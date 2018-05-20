@@ -1,0 +1,24 @@
+{
+  "name": "from-react-to-reason",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "bs-platform": "^3.0.0",
+    "flow-bin": "^0.72.0",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-redux": "^5.0.7",
+    "react-scripts": "1.1.4",
+    "reason-react": "^0.4.1",
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.2.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "flow": "flow check",
+    "bsb": "bsb -make-world -w"
+  }
+}
