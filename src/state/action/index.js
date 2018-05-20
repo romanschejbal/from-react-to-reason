@@ -2,6 +2,7 @@
 export const REQUEST_FLIGHTS = 'REQUEST_FLIGHTS';
 export const RECEIVE_FLIGHTS = 'RECEIVE_FLIGHTS';
 export const FAILURE_FLIGHTS = 'FAILURE_FLIGHTS';
+export const TICK = 'TICK';
 
 type ExtractReturnValue<T, F: (...args: Array<any>) => T> = T;
 type ERV<T> = ExtractReturnValue<*, T>;
@@ -9,7 +10,10 @@ type ERV<T> = ExtractReturnValue<*, T>;
 export type actionT =
   | ERV<typeof requestFlights>
   | ERV<typeof receiveFlights>
-  | ERV<typeof failureFlights>;
+  | ERV<typeof failureFlights>
+  | ERV<typeof tick>;
+
+export const tick = () => ({ type: TICK });
 
 export const fetchFlights = (where: string, when: string) => (
   dispatch: Function
