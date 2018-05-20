@@ -11,17 +11,32 @@ export type actionT =
   | ERV<typeof receiveFlights>
   | ERV<typeof failureFlights>;
 
-export const requestFlights = (where: string, when: string) => ({
-  type: REQUEST_FLIGHTS,
-  payload: { where, when }
+export const fetchFlights = (where: string, when: string) => (
+  dispatch: Function
+) => {
+  dispatch(requestFlights());
+  setTimeout(
+    () =>
+      dispatch(
+        receiveFlights([
+          { airline: 'British Airways', price: 390, duration: 3.5 },
+          { airline: 'KLM', price: 340, duration: 2.2 }
+        ])
+      ),
+    3000
+  );
+};
+
+const requestFlights = () => ({
+  type: REQUEST_FLIGHTS
 });
 
-export const receiveFlights = (flights: Array<Object>) => ({
+const receiveFlights = (flights: Array<Object>) => ({
   type: RECEIVE_FLIGHTS,
   payload: { flights }
 });
 
-export const failureFlights = (error: Error) => ({
+const failureFlights = (error: Error) => ({
   type: FAILURE_FLIGHTS,
   payload: { error }
 });
