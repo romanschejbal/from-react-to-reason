@@ -21,23 +21,14 @@ function make(data, _) {
           /* render */(function () {
               var tmp;
               if (typeof data === "number") {
-                tmp = "Not asked";
+                tmp = data === 0 ? "Not asked" : "Loading...";
+              } else if (data.tag) {
+                var match = data[0].message;
+                tmp = match !== undefined ? match : "Unknown error occured";
               } else {
-                switch (data.tag | 0) {
-                  case 0 : 
-                      tmp = "Loading...";
-                      break;
-                  case 1 : 
-                      tmp = $$Array.map((function (flightInfo) {
-                              return React.createElement("div", undefined, React.createElement("h2", undefined, flightInfo[/* airline */0]), React.createElement("p", undefined, "Price: $" + String(flightInfo[/* price */1]), " | Duration: " + (Pervasives.string_of_float(flightInfo[/* duration */2]) + "hours")));
-                            }), data[0]);
-                      break;
-                  case 2 : 
-                      var match = data[0].message;
-                      tmp = match !== undefined ? match : "Unknown error occured";
-                      break;
-                  
-                }
+                tmp = $$Array.map((function (flightInfo) {
+                        return React.createElement("div", undefined, React.createElement("h2", undefined, flightInfo[/* airline */0]), React.createElement("p", undefined, "Price: $" + String(flightInfo[/* price */1]), " | Duration: " + (Pervasives.string_of_float(flightInfo[/* duration */2]) + "hours")));
+                      }), data[0]);
               }
               return React.createElement("div", undefined, tmp);
             }),

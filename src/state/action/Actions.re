@@ -10,10 +10,10 @@ type flightInfo = {
   duration: float,
 };
 
-type async('a, 'b) =
+type async('a) =
   | Idle
-  | Start('a)
-  | Success('b)
+  | Loading
+  | Success('a)
   | Error(Js.Exn.t);
 
 [@bs.deriving accessors]
@@ -22,11 +22,11 @@ type action =
   | ReceiveFlights(array(flightInfo))
   | FailureFlights(Js.Exn.t)
   | Tick(unit)
-  | Flights(async((from, where, whenT), array(flightInfo)));
+  | Flights(async(array(flightInfo)));
 
 let requestFlights = (from, where, whenT) =>
   (. dispatch) => {
-    dispatch(Flights(Start((from, where, whenT))));
+    dispatch(Flights(Loading));
     Js.Global.setTimeout(
       () =>
         dispatch(

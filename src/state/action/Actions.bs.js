@@ -19,15 +19,11 @@ function flights(param_0) {
   return /* Flights */Block.__(4, [param_0]);
 }
 
-function requestFlights(from, where, whenT) {
+function requestFlights(_, _$1, _$2) {
   return (function (dispatch) {
-      Curry._1(dispatch, /* Flights */Block.__(4, [/* Start */Block.__(0, [/* tuple */[
-                    from,
-                    where,
-                    whenT
-                  ]])]));
+      Curry._1(dispatch, /* Flights */Block.__(4, [/* Loading */1]));
       return setTimeout((function () {
-                    return Curry._1(dispatch, /* Flights */Block.__(4, [/* Success */Block.__(1, [/* array */[
+                    return Curry._1(dispatch, /* Flights */Block.__(4, [/* Success */Block.__(0, [/* array */[
                                         /* record */[
                                           /* airline */"British Airways",
                                           /* price */390,

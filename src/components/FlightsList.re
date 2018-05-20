@@ -9,7 +9,7 @@ let make = (~data, _children) => {
       Actions.(
         switch (data) {
         | Idle => string("Not asked")
-        | Start(_) => string("Loading...")
+        | Loading => string("Loading...")
         | Success((data: Reducer.flightsData)) =>
           array(
             Array.map(

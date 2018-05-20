@@ -6,11 +6,7 @@ type state = {
   flights: flightsData,
   error: option(Js.Exn.t),
   ticks: int,
-  data:
-    Actions.async(
-      (Actions.from, Actions.where, Actions.whenT),
-      flightsData,
-    ),
+  data: Actions.async(flightsData),
 };
 
 let initialState = {
@@ -31,7 +27,7 @@ let default = (state, action) => {
       | RequestFlights(_, _, _) => {...state, loading: true}
       | ReceiveFlights(flights) => {...state, flights}
       | FailureFlights(error) => {...state, error: Some(error)}
-      | Tick(()) => {...state, ticks: state.ticks + 1}
+      | Tick () => {...state, ticks: state.ticks + 1}
       | Flights(data) => {...state, data}
       }
     )

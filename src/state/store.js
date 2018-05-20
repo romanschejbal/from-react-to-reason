@@ -1,13 +1,18 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducer/Reducer.bs';
-import { toType } from './action/Actions.bs';
+// import { toType } from './action/Actions.bs';
 
 const fromReasonToJs = store => next => action => {
   if (action.tag !== undefined) {
     // reason action
     const { tag, ...rest } = action;
-    action = { type: toType(action), tag, payload: rest, reasonAction: action };
+    action = {
+      type: `REASON_ACTION_${tag}`,
+      tag,
+      payload: rest,
+      reasonAction: action
+    };
   }
   next(action);
 };
