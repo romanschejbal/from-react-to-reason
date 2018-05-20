@@ -2,6 +2,7 @@
 
 import * as $$Array from "../../node_modules/bs-platform/lib/es6/array.js";
 import * as React from "react";
+import * as Pervasives from "../../node_modules/bs-platform/lib/es6/pervasives.js";
 import * as ReasonReact from "../../node_modules/reason-react/src/ReasonReact.js";
 
 var component = ReasonReact.statelessComponent("FlightsList");
@@ -28,7 +29,7 @@ function make(data, _) {
                       break;
                   case 1 : 
                       tmp = $$Array.map((function (flightInfo) {
-                              return React.createElement("div", undefined, flightInfo[/* airline */0]);
+                              return React.createElement("div", undefined, React.createElement("h2", undefined, flightInfo[/* airline */0]), React.createElement("p", undefined, "Price: $" + String(flightInfo[/* price */1]), " | Duration: " + (Pervasives.string_of_float(flightInfo[/* duration */2]) + "hours")));
                             }), data[0]);
                       break;
                   case 2 : 
@@ -49,7 +50,7 @@ function make(data, _) {
 }
 
 var $$default = ReasonReact.wrapReasonForJs(component, (function (jsProps) {
-        return make(jsProps.data, /* array */[]);
+        return make(jsProps.data, jsProps.children);
       }));
 
 export {

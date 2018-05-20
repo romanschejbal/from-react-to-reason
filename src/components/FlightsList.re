@@ -13,7 +13,20 @@ let make = (~data, _children) => {
         | Success((data: Reducer.flightsData)) =>
           array(
             Array.map(
-              flightInfo => <div> (string(flightInfo.airline)) </div>,
+              flightInfo =>
+                <div>
+                  <h2> (string(flightInfo.airline)) </h2>
+                  <p>
+                    (string("Price: $" ++ string_of_int(flightInfo.price)))
+                    (
+                      string(
+                        " | Duration: "
+                        ++ string_of_float(flightInfo.duration)
+                        ++ "hours",
+                      )
+                    )
+                  </p>
+                </div>,
               data,
             ),
           )
@@ -30,4 +43,6 @@ let make = (~data, _children) => {
 };
 
 let default =
-  wrapReasonForJs(~component, jsProps => make(~data=jsProps##data, [||]));
+  wrapReasonForJs(~component, jsProps =>
+    make(~data=jsProps##data, jsProps##children)
+  );

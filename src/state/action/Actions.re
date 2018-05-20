@@ -6,7 +6,7 @@ type whenT = string;
 
 type flightInfo = {
   airline: string,
-  price: float,
+  price: int,
   duration: float,
 };
 
@@ -32,8 +32,8 @@ let requestFlights = (from, where, whenT) =>
         dispatch(
           Flights(
             Success([|
-              {airline: "British Airways", price: 390., duration: 3.5},
-              {airline: "KLM", price: 340., duration: 2.2},
+              {airline: "British Airways", price: 390, duration: 3.5},
+              {airline: "KLM", price: 340, duration: 2.2},
             |]),
           ),
         ),
