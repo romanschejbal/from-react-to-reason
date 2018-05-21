@@ -24,7 +24,7 @@ type action =
   | Tick(unit)
   | Flights(async(array(flightInfo)));
 
-let requestFlights = (from, where, whenT) =>
+let requestFlights = (_from, _where, _whenT) =>
   (. dispatch) => {
     dispatch(Flights(Loading));
     Js.Global.setTimeout(
