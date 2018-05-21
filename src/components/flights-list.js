@@ -1,8 +1,17 @@
+// @flow
 import React from 'react';
 
-export default ({ loading, data, error }) => {
+export default ({
+  loading,
+  data,
+  error
+}: {
+  loading: boolean,
+  data: Array<Object>,
+  error: ?Error
+}) => {
   if (error) {
-    return <div>{error}</div>;
+    return <div>{error.message}</div>;
   }
 
   if (loading) {
