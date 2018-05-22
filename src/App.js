@@ -16,7 +16,6 @@ const mapDispatchToProps = { requestFlights, tick };
 
 class App extends Component {
   componentDidMount() {
-    this.props.requestFlights('PRG', 'PSD', 'today');
     setInterval(this.props.tick, 1000);
   }
 
@@ -27,7 +26,14 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React {this.props.ticks}</h1>
         </header>
-        <p />
+        <p className="App-intro">
+          <button
+            onClick={() => this.props.requestFlights('PRG', 'LGW', 'today')}
+            style={{ padding: '5px 10px', fontSize: '12pt' }}
+          >
+            Load flights
+          </button>
+        </p>
         <FlightsList data={this.props.data} />
       </div>
     );

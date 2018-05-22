@@ -39,6 +39,6 @@ let requestFlights = (_from, _where, _whenT) =>
             |]),
           ),
         ),
-      3000,
+      2000,
     );
   };

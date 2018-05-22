@@ -17,7 +17,7 @@ let make = (~data, _children) => {
       (
         switch (data) {
         | Idle => "Not asked" |> string
-        | Loading => "Loading" |> string
+        | Loading => "Loading..." |> string
         | Error(err) => Js.Exn.message(err) |?> "An error occurred" |> string
         | Success(data) =>
           Array.map(
