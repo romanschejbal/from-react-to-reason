@@ -4,8 +4,17 @@ import * as $$Array from "../../node_modules/bs-platform/lib/es6/array.js";
 import * as React from "react";
 import * as Pervasives from "../../node_modules/bs-platform/lib/es6/pervasives.js";
 import * as ReasonReact from "../../node_modules/reason-react/src/ReasonReact.js";
+import * as Js_primitive from "../../node_modules/bs-platform/lib/es6/js_primitive.js";
 
 var component = ReasonReact.statelessComponent("FlightsList");
+
+function $pipe$unknown$great(x, def) {
+  if (x) {
+    return x[0];
+  } else {
+    return def;
+  }
+}
 
 function make(data, _) {
   return /* record */[
@@ -19,9 +28,15 @@ function make(data, _) {
           /* willUpdate */component[/* willUpdate */7],
           /* shouldUpdate */component[/* shouldUpdate */8],
           /* render */(function () {
-              return React.createElement("div", undefined, $$Array.map((function (flightInfo) {
-                                return React.createElement("div", undefined, React.createElement("h2", undefined, flightInfo[/* airline */0]), React.createElement("p", undefined, "Price: $" + String(flightInfo[/* price */1]), " | Duration: " + (Pervasives.string_of_float(flightInfo[/* duration */2]) + "hours")));
-                              }), data));
+              var tmp;
+              tmp = typeof data === "number" ? (
+                  data === 0 ? "Not asked" : "Loading"
+                ) : (
+                  data.tag ? $pipe$unknown$great(Js_primitive.undefined_to_opt(data[0].message), "An error occurred") : $$Array.map((function (flightInfo) {
+                            return React.createElement("div", undefined, React.createElement("h2", undefined, flightInfo[/* airline */0]), React.createElement("p", undefined, "Price: $" + String(flightInfo[/* price */1]), " | Duration: " + (Pervasives.string_of_float(flightInfo[/* duration */2]) + "hours")));
+                          }), data[0])
+                );
+              return React.createElement("div", undefined, tmp);
             }),
           /* initialState */component[/* initialState */10],
           /* retainedProps */component[/* retainedProps */11],
@@ -37,6 +52,7 @@ var $$default = ReasonReact.wrapReasonForJs(component, (function (jsProps) {
 
 export {
   component ,
+  $pipe$unknown$great ,
   make ,
   $$default ,
   $$default as default,

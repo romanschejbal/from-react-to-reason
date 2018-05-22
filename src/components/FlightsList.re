@@ -4,29 +4,41 @@ open Types;
 
 let component = statelessComponent("FlightsList");
 
+let (|?>) = (x, def) =>
+  switch (x) {
+  | Some(x) => x
+  | None => def
+  };
+
 let make = (~data, _children) => {
   ...component,
   render: _self =>
     <div>
       (
-        Array.map(
-          flightInfo =>
-            <div>
-              <h2> (string(flightInfo.airline)) </h2>
-              <p>
-                (string("Price: $" ++ string_of_int(flightInfo.price)))
-                (
-                  string(
-                    " | Duration: "
-                    ++ string_of_float(flightInfo.duration)
-                    ++ "hours",
+        switch (data) {
+        | Idle => "Not asked" |> string
+        | Loading => "Loading" |> string
+        | Error(err) => Js.Exn.message(err) |?> "An error occurred" |> string
+        | Success(data) =>
+          Array.map(
+            flightInfo =>
+              <div>
+                <h2> (string(flightInfo.airline)) </h2>
+                <p>
+                  (string("Price: $" ++ string_of_int(flightInfo.price)))
+                  (
+                    string(
+                      " | Duration: "
+                      ++ string_of_float(flightInfo.duration)
+                      ++ "hours",
+                    )
                   )
-                )
-              </p>
-            </div>,
-          data,
-        )
-        |> array
+                </p>
+              </div>,
+            data,
+          )
+          |> array
+        }
       )
     </div>,
 };
