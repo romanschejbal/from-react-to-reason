@@ -19,18 +19,9 @@ function make(data, _) {
           /* willUpdate */component[/* willUpdate */7],
           /* shouldUpdate */component[/* shouldUpdate */8],
           /* render */(function () {
-              var tmp;
-              if (typeof data === "number") {
-                tmp = data === 0 ? "Not asked" : "Loading...";
-              } else if (data.tag) {
-                var match = data[0].message;
-                tmp = match !== undefined ? match : "Unknown error occured";
-              } else {
-                tmp = $$Array.map((function (flightInfo) {
-                        return React.createElement("div", undefined, React.createElement("h2", undefined, flightInfo[/* airline */0]), React.createElement("p", undefined, "Price: $" + String(flightInfo[/* price */1]), " | Duration: " + (Pervasives.string_of_float(flightInfo[/* duration */2]) + "hours")));
-                      }), data[0]);
-              }
-              return React.createElement("div", undefined, tmp);
+              return React.createElement("div", undefined, $$Array.map((function (flightInfo) {
+                                return React.createElement("div", undefined, React.createElement("h2", undefined, flightInfo[/* airline */0]), React.createElement("p", undefined, "Price: $" + String(flightInfo[/* price */1]), " | Duration: " + (Pervasives.string_of_float(flightInfo[/* duration */2]) + "hours")));
+                              }), data));
             }),
           /* initialState */component[/* initialState */10],
           /* retainedProps */component[/* retainedProps */11],

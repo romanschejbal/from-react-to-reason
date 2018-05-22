@@ -39,24 +39,12 @@ function requestFlights(_, _$1, _$2) {
     });
 }
 
-function toType(param) {
-  switch (param.tag | 0) {
-    case 0 : 
-        return "REQUEST_FLIGHTS";
-    case 4 : 
-        return "FLIGHTS";
-    default:
-      return "UNKNOWN_ACTION";
-  }
-}
-
 export {
   receiveFlights ,
   failureFlights ,
   tick ,
   flights ,
   requestFlights ,
-  toType ,
   
 }
 /* No side effect */

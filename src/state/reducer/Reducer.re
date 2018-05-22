@@ -1,4 +1,4 @@
-type flightsData = array(Actions.flightInfo);
+type flightsData = array(Types.flightInfo);
 
 [@bs.deriving jsConverter]
 type state = {
@@ -6,7 +6,7 @@ type state = {
   flights: flightsData,
   error: option(Js.Exn.t),
   ticks: int,
-  data: Actions.async(flightsData),
+  data: Types.async(flightsData),
 };
 
 let initialState = {
@@ -14,9 +14,27 @@ let initialState = {
   flights: [||],
   error: None,
   ticks: 0,
-  data: Actions.Idle,
+  data: Types.Idle,
 };
 
+/* let defaultaa = (state, action) => {
+     let optionState = Js.Nullable.toOption(state);
+     switch (optionState) {
+     | None => initialState
+     | Some(state) =>
+       switch (action##_type) {
+       | "REQUEST_FLIGHTS" => {...state, loading: true}
+       | "RECEIVE_FLIGHTS" => {
+           ...state,
+           flights: Array.map(Types.flightInfoFromJs, action##payload##flights),
+           loading: false,
+         }
+       | "FAILURE_FLIGHTS" => {...state, error: action##payload##error}
+       | "TICK" => {...state, ticks: state.ticks + 1}
+       | _ => state
+       }
+     };
+   }; */
 let default = (state, action) => {
   let optionState = Js.Nullable.toOption(state);
   switch (optionState) {
