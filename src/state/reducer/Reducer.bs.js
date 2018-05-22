@@ -3,30 +3,19 @@
 
 function stateToJs(param) {
   return {
-          loading: param[/* loading */0],
-          flights: param[/* flights */1],
-          error: param[/* error */2],
-          ticks: param[/* ticks */3],
-          data: param[/* data */4]
+          ticks: param[/* ticks */0],
+          data: param[/* data */1]
         };
 }
 
 function stateFromJs(param) {
   return /* record */[
-          /* loading */param.loading,
-          /* flights */param.flights,
-          /* error */param.error,
           /* ticks */param.ticks,
           /* data */param.data
         ];
 }
 
-var initialState_001 = /* flights : array */[];
-
 var initialState = /* record */[
-  /* loading */false,
-  initialState_001,
-  /* error : None */0,
   /* ticks */0,
   /* data : Idle */0
 ];
@@ -34,50 +23,16 @@ var initialState = /* record */[
 function $$default(state, action) {
   if (state == null) {
     return initialState;
+  } else if (action.tag) {
+    return /* record */[
+            /* ticks */state[/* ticks */0],
+            /* data */action[0]
+          ];
   } else {
-    switch (action.tag | 0) {
-      case 0 : 
-          return /* record */[
-                  /* loading */true,
-                  /* flights */state[/* flights */1],
-                  /* error */state[/* error */2],
-                  /* ticks */state[/* ticks */3],
-                  /* data */state[/* data */4]
-                ];
-      case 1 : 
-          return /* record */[
-                  /* loading */state[/* loading */0],
-                  /* flights */action[0],
-                  /* error */state[/* error */2],
-                  /* ticks */state[/* ticks */3],
-                  /* data */state[/* data */4]
-                ];
-      case 2 : 
-          return /* record */[
-                  /* loading */state[/* loading */0],
-                  /* flights */state[/* flights */1],
-                  /* error : Some */[action[0]],
-                  /* ticks */state[/* ticks */3],
-                  /* data */state[/* data */4]
-                ];
-      case 3 : 
-          return /* record */[
-                  /* loading */state[/* loading */0],
-                  /* flights */state[/* flights */1],
-                  /* error */state[/* error */2],
-                  /* ticks */state[/* ticks */3] + 1 | 0,
-                  /* data */state[/* data */4]
-                ];
-      case 4 : 
-          return /* record */[
-                  /* loading */state[/* loading */0],
-                  /* flights */state[/* flights */1],
-                  /* error */state[/* error */2],
-                  /* ticks */state[/* ticks */3],
-                  /* data */action[0]
-                ];
-      
-    }
+    return /* record */[
+            /* ticks */state[/* ticks */0] + 1 | 0,
+            /* data */state[/* data */1]
+          ];
   }
 }
 

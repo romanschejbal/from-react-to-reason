@@ -1,7 +1,6 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducer/Reducer.bs';
-// import { toType } from './action/Actions.bs';
 
 const fromReasonToJs = store => next => action => {
   if (action.tag !== undefined) {
