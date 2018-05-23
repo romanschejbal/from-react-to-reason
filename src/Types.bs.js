@@ -17,9 +17,14 @@ function flightInfoFromJs(param) {
         ];
 }
 
+function addSuffix(suffix, x) {
+  return x + suffix;
+}
+
 export {
   flightInfoToJs ,
   flightInfoFromJs ,
+  addSuffix ,
   
 }
 /* No side effect */

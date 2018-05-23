@@ -10,3 +10,5 @@ type async('a) =
   | Loading
   | Success('a)
   | Error(Js.Exn.t);
+
+let addSuffix = (suffix, x) => x ++ suffix;
